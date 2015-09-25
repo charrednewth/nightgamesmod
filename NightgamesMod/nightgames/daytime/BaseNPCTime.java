@@ -70,6 +70,7 @@ public abstract class BaseNPCTime extends Activity {
 		Global.gui().clearText();
 		Global.gui().clearCommand();
 		List<Loot> giftables = getGiftables();
+		Map<Item, Integer> MyInventory = this.player.getInventory();
 
 		Optional<TransformationOption> optionalOption = options.stream().filter(opt -> choice.equals(opt.option)).findFirst();
 		Optional<Loot> optionalGiftOption = giftables.stream().filter(gift -> choice.equals(Global.capitalizeFirstLetter(gift.getName()))).findFirst();
@@ -108,14 +109,14 @@ public abstract class BaseNPCTime extends Activity {
 			if (transformationFlag != "")
 				Global.flag(transformationFlag);
 			options.forEach(opt -> {
-				Global.gui().message(opt.option + ":");
-				opt.ingredients.entrySet().forEach((entry) -> {
-					Global.gui().message(entry.getValue() + " " + entry.getKey().getName());					
-				});
-				if (!opt.additionalRequirements.isEmpty()) {
-					Global.gui().message(opt.additionalRequirements);
+				if (MyInventory.get(entry.getKey()) == null || MyInventory.get(entry.getKey()) == 0) {
+					Global.gui().message(entry.getValue() + " " + entry.getKey().getName() + " (you don't have any)");
+					
 				}
-				Global.gui().message("<br>");
+				else {
+					Global.gui().message(entry.getValue() + " " + entry.getKey().getName() +
+										" (you have: " +  MyInventory.get(entry.getKey()) + ")");
+				}
 			});
 			options.forEach(opt -> {
 				if (opt.requirements.stream().allMatch(req -> req.meets(null, player, npc))) {
