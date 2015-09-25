@@ -6,6 +6,7 @@ import nightgames.characters.Trait;
 import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.items.Item;
+import java.util.Map;
 
 public class BlackMarket extends Store {
 	private boolean trained;
