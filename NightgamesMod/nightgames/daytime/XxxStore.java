@@ -5,6 +5,7 @@ import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.items.Item;
 import nightgames.items.clothing.Clothing;
+import java.util.Map;
 
 public class XxxStore extends Store{
 	
