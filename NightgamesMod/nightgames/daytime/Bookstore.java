@@ -4,6 +4,7 @@ import nightgames.characters.Character;
 import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.items.Item;
+import java.util.Map;
 
 public class Bookstore extends Store {
 	public Bookstore(Character player) {
