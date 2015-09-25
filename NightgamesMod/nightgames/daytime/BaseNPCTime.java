@@ -109,14 +109,21 @@ public abstract class BaseNPCTime extends Activity {
 			if (transformationFlag != "")
 				Global.flag(transformationFlag);
 			options.forEach(opt -> {
-				if (MyInventory.get(entry.getKey()) == null || MyInventory.get(entry.getKey()) == 0) {
-					Global.gui().message(entry.getValue() + " " + entry.getKey().getName() + " (you don't have any)");
-					
+				Global.gui().message(opt.option + ":");
+				opt.ingredients.entrySet().forEach((entry) -> {
+					if (MyInventory.get(entry.getKey()) == null || MyInventory.get(entry.getKey()) == 0) {
+						Global.gui().message(entry.getValue() + " " + entry.getKey().getName() + " (you don't have any)");
+						
+					}
+					else {
+						Global.gui().message(entry.getValue() + " " + entry.getKey().getName() +
+											" (you have: " +  MyInventory.get(entry.getKey()) + ")");
+					}				
+				});
+				if (!opt.additionalRequirements.isEmpty()) {
+					Global.gui().message(opt.additionalRequirements);
 				}
-				else {
-					Global.gui().message(entry.getValue() + " " + entry.getKey().getName() +
-										" (you have: " +  MyInventory.get(entry.getKey()) + ")");
-				}
+				Global.gui().message("<br>");
 			});
 			options.forEach(opt -> {
 				if (opt.requirements.stream().allMatch(req -> req.meets(null, player, npc))) {
