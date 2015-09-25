@@ -5,7 +5,7 @@ import nightgames.characters.Trait;
 import nightgames.global.Flag;
 import nightgames.global.Global;
 import nightgames.items.Item;
-
+import java.util.Map;
 
 public class HWStore extends Store {
 	public HWStore(Character player) {
